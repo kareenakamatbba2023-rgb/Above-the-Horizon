@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RedBull × Ferragamo × Radisson Blu — Above the Horizon, Cappadocia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8D5A3;
+    --red: #CC0000;
+    --dark: #080808;
+    --deep: #0D0B08;
+    --smoke: #1A1710;
+    --text: #F0EAD6;
+    --muted: #8A8070;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding: 60px 20px;
+    background: radial-gradient(ellipse at 50% 80%, rgba(201,168,76,0.12) 0%, transparent 65%),
+                radial-gradient(ellipse at 80% 20%, rgba(204,0,0,0.08) 0%, transparent 50%),
+                linear-gradient(180deg, #000 0%, #0D0B08 100%);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 1px 1px, rgba(201,168,76,0.08) 1px, transparent 0);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 1s 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 9vw, 130px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp 1s 0.4s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+    display: block;
+  }
+
+  .hero-sub {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(14px, 2.5vw, 22px);
+    letter-spacing: 8px;
+    color: var(--muted);
+    margin-top: 16px;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 1s 0.6s forwards;
+  }
+
+  .hook-badge {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    padding: 14px 36px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--gold-light);
+    letter-spacing: 1px;
+    position: relative;
+    opacity: 0;
+    animation: fadeUp 1s 0.8s forwards;
+  }
+
+  .hook-badge::before, .hook-badge::after {
+    content: '✦';
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    color: var(--red);
+    font-size: 12px;
+  }
+  .hook-badge::before { left: 12px; }
+  .hook-badge::after { right: 12px; }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--muted);
+    animation: pulse 2s infinite;
+  }
+
+  /* SECTIONS */
+  section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 48px;
+  }
+
+  .section-title span {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  /* HOOK SECTION */
+  .hook-section {
+    background: linear-gradient(135deg, var(--smoke) 0%, #100E0A 100%);
+    border-top: 1px solid rgba(201,168,76,0.2);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .hook-section > * { max-width: 1100px; margin-left: auto; margin-right: auto; padding-left: 40px; padding-right: 40px; }
+
+  .hook-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 4vw, 52px);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.3;
+    color: var(--gold-light);
+    border-left: 2px solid var(--red);
+    padding: 32px 0 32px 40px;
+    margin: 48px 40px;
+  }
+
+  /* STRATEGY GRID */
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+    margin-top: 48px;
+  }
+
+  .strategy-card {
+    background: var(--smoke);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .strategy-card:hover { background: #1E1A12; }
+
+  .strategy-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--red), var(--gold));
+    transform: scaleX(0);
+    transition: transform 0.4s;
+    transform-origin: left;
+  }
+
+  .strategy-card:hover::after { transform: scaleX(1); }
+
+  .card-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    color: rgba(201,168,76,0.12);
+    position: absolute;
+    top: 16px; right: 20px;
+    line-height: 1;
+  }
+
+  .card-icon { font-size: 28px; margin-bottom: 16px; }
+
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    color: var(--gold-light);
+  }
+
+  .card-body {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #9A9080;
+  }
+
+  /* EXPERIENCE TIMELINE */
+  .timeline {
+    position: relative;
+    padding-left: 48px;
+    margin-top: 48px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--red), var(--gold), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 52px;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -44px; top: 6px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 12px rgba(201,168,76,0.6);
+  }
+
+  .timeline-time {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--red);
+    margin-bottom: 8px;
+  }
+
+  .timeline-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    margin-bottom: 8px;
+    color: var(--gold-light);
+  }
+
+  .timeline-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 560px;
+  }
+
+  /* ENHANCEMENTS */
+  .enhancement-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .enhancement-item {
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 32px 28px;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .enhancement-item:hover {
+    border-color: rgba(201,168,76,0.5);
+  }
+
+  .enhancement-tag {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    margin-bottom: 16px;
+  }
+
+  .enhancement-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  .enhancement-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  /* DIVIDER */
+  .divider {
+    text-align: center;
+    padding: 40px 0;
+    color: rgba(201,168,76,0.3);
+    font-size: 20px;
+    letter-spacing: 12px;
+  }
+
+  /* MARKETING CHANNELS */
+  .channels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 36px;
+  }
+
+  .channel {
+    border: 1px solid rgba(201,168,76,0.25);
+    padding: 12px 24px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--gold-light);
+    position: relative;
+  }
+
+  .channel-priority {
+    position: absolute;
+    top: -8px; right: 8px;
+    font-size: 8px;
+    letter-spacing: 2px;
+    background: var(--red);
+    color: white;
+    padding: 2px 6px;
+  }
+
+  /* METRICS */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 2px;
+    margin-top: 48px;
+    border: 1px solid rgba(201,168,76,0.1);
+  }
+
+  .metric {
+    background: var(--smoke);
+    padding: 32px 24px;
+    text-align: center;
+  }
+
+  .metric-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    color: var(--gold);
+    line-height: 1;
+    display: block;
+  }
+
+  .metric-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 60px 40px;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  footer strong {
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">RedBull × Salvatore Ferragamo × Radisson Blu &nbsp;·&nbsp; Cappadocia, Turkey</p>
+  <h1 class="hero-title">
+    Above<br><em>The Horizon</em>
+  </h1>
+  <p class="hero-sub">A Film Screening. A Fleet. A Sunset. No Words Needed.</p>
+  <div class="hook-badge">Where cinema meets the sky</div>
+  <p class="scroll-hint">↓ scroll ↓</p>
+</div>
+
+<!-- HOOK -->
+<div class="hook-section" style="padding: 80px 0;">
+  <div style="max-width:1100px;margin:0 auto;padding:0 40px;">
+    <p class="section-label">The Hook</p>
+    <blockquote class="hook-quote" style="margin-left:0;">
+      "You've watched films in theatres, on planes, in the rain. But have you ever watched one 2,000 feet above the earth?<br><br>
+      <em>Drift in silence. Bathe in the golden glow. As the world disappears below you.</em>"
+    </blockquote>
+    <p style="font-size:15px;line-height:1.8;color:var(--muted);max-width:680px;">
+      The seats are limited. The altitude is high.<br>
+      RedBull doesn't just give you wings — tonight, it gives you a balloon over Cappadocia.
+    </p>
+  </div>
+</div>
+
+<!-- MARKETING STRATEGY -->
+<section>
+  <p class="section-label">Marketing Strategy</p>
+  <h2 class="section-title">The <span>Blueprint</span></h2>
+
+  <div class="strategy-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
+    <div class="strategy-card">
+      <span class="card-number">01</span>
+      <div class="card-icon">&#128241;</div>
+      <h3 class="card-title">Tease-First Campaign</h3>
+      <p class="card-body">Launch 3 weeks before with no event name, no date &#8212; only a cinematic 15-second vertical video: a film frame flickering against a twilight sky with headphones floating. Hashtag: #AboveTheHorizon. Let people ask what it is before you tell them.</p>
+    </div>
+    <div class="strategy-card">
+      <span class="card-number">02</span>
+      <div class="card-icon">&#127903;</div>
+      <h3 class="card-title">Invite-Only First Edition</h3>
+      <p class="card-body">The inaugural event is invitation-only to press, tastemakers, and competition winners. Public tickets open for Edition 2. This creates earned media, social proof, and a frenzy for the public release. FOMO is your biggest marketing budget.</p>
+      <p class="card-body" style="margin-top:20px; padding-top:16px; border-top:1px solid rgba(201,168,76,0.15);">
+        <span style="color:var(--gold); font-size:10px; letter-spacing:3px; text-transform:uppercase; display:block; margin-bottom:10px;">Exclusive Invites Via</span>
+        &#127963;&nbsp; Private Members Club Mailings<br><br>
+        &#128718;&nbsp; Luxury Hotel Concierge Partnerships
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CHANNELS -->
+<section style="padding-top:0;">
+  <p class="section-label">Distribution Channels</p>
+  <h2 class="section-title">Where to <span>Reach Them</span></h2>
+  <div class="channels">
+    <div class="channel">Instagram Reels</div>
+    <div class="channel">RedBull.com Feature</div>
+    <div class="channel">Ferragamo.com Editorial</div>
+    <div class="channel">Radisson Blu Guest Concierge</div>
+    <div class="channel">Luxury Hotel Concierge Partnerships</div>
+    <div class="channel">Private Members Club Mailings</div>
+    <div class="channel">Film Festival Tie-Ins</div>
+    <div class="channel">WhatsApp Invite Drops</div>
+    <div class="channel">Print — Monocle, Wallpaper*</div>
+  </div>
+</section>
+
+<div class="divider">✦ ✦ ✦</div>
+
+<!-- EVENT TIMELINE -->
+<section>
+  <p class="section-label">The Experience</p>
+  <h2 class="section-title">Evening <span>Journey</span></h2>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <p class="timeline-time">5:00 PM — Arrival</p>
+      <h3 class="timeline-title">The Unveiling</h3>
+      <p class="timeline-desc">Guests are collected from Radisson Blu Cappadocia by private transfer and arrive at a curated launch field framed by the iconic fairy chimneys. Chilled RedBull Edition cocktails await — served in Salvatore Ferragamo-styled frosted film canister vessels. Staff in minimal black uniforms bear a single emblem. The balloons are already inflating on the horizon.</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-time">5:30 PM — Ascent</p>
+      <h3 class="timeline-title">Lift Off</h3>
+      <p class="timeline-desc">Guests board their balloon. Custom noise-cancelling headphones are fitted — engraved with their name. A pre-show ambient soundscape begins. No talking necessary. A gentle hum fills the ears as the earth drops away.</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-time">6:00 PM — Sunset</p>
+      <h3 class="timeline-title">The Screening Begins</h3>
+      <p class="timeline-desc">At golden hour altitude, the film plays. The screen is mounted to the balloon gondola. The real backdrop is the burning sky. Guests sip from curated mid-air tasting kits — three RedBull Edition flavours matched to three acts of the film. Ferragamo-designed glassware and accessories complete the aesthetic.</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-time">8:00 PM — Descent</p>
+      <h3 class="timeline-title">Return</h3>
+      <p class="timeline-desc">The film ends as stars appear. Slow descent. The soundscape fades to silence. Guests land back — changed.</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-time">8:30 PM — Ground</p>
+      <h3 class="timeline-title">Meet, Dine, Remember</h3>
+      <p class="timeline-desc">Actor meet-and-greet in an illuminated marquee styled by Salvatore Ferragamo. Followed by a private chef tasting dinner at Radisson Blu Cappadocia — menu designed around the film's setting or narrative, paired with RedBull Edition finishes. The Ferragamo-engraved headphones are theirs to keep.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider">✦ ✦ ✦</div>
+
+<!-- ENHANCEMENTS -->
+<section>
+  <p class="section-label">Experience Enhancements</p>
+  <h2 class="section-title">Ways to go <span>Further</span></h2>
+
+  <div class="enhancement-list" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+    <div class="enhancement-item">
+      <span class="enhancement-tag">Sensory</span>
+      <h3 class="enhancement-title">Scent Synchronisation</h3>
+      <p class="enhancement-desc">Partner with a perfumer to design a scent for each act of the film — cedar for forests, salt for ocean scenes, petrichor for rain — diffused subtly through the headphone cushion warming element.</p>
+    </div>
+    <div class="enhancement-item">
+      <span class="enhancement-tag">Wellness</span>
+      <h3 class="enhancement-title">Pre-Screening Breathwork</h3>
+      <p class="enhancement-desc">A 30-minute guided breathwork session through the headphones as the balloon ascends — priming the nervous system for the sensory silence ahead. Surprising, memorable, on-brand for a premium wellness audience.</p>
+    </div>
+    <div class="enhancement-item">
+      <span class="enhancement-tag">Collectible</span>
+      <h3 class="enhancement-title">Film Reel Keepsake</h3>
+      <p class="enhancement-desc">Every guest receives a physical 35mm still from the film in a bespoke branded tin — a tactile memory of a night that was otherwise completely intangible.</p>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section style="padding-top:0;">
+  <p class="section-label">Success Metrics</p>
+  <h2 class="section-title">What <span>Victory</span> Looks Like</h2>
+
+  <div class="metrics">
+    <div class="metric">
+      <span class="metric-val">10×</span>
+      <p class="metric-label">Ticket Waitlist vs Availability</p>
+    </div>
+    <div class="metric">
+      <span class="metric-val">85%</span>
+      <p class="metric-label">Organic Social Share Rate</p>
+    </div>
+    <div class="metric">
+      <span class="metric-val">12+</span>
+      <p class="metric-label">Editorial Press Features</p>
+    </div>
+    <div class="metric">
+      <span class="metric-val">4.9</span>
+      <p class="metric-label">Target NPS Score</p>
+    </div>
+    <div class="metric">
+      <span class="metric-val">3×</span>
+      <p class="metric-label">Partner Brand Uplift Post-Event</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>RedBull × Salvatore Ferragamo × Radisson Blu</strong> &nbsp;·&nbsp; Above The Horizon &nbsp;·&nbsp; Cappadocia, Turkey
+</footer>
+
+</body>
+</html>
